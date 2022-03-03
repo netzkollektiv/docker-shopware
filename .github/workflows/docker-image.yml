@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 env:
-  IMAGE: netzkollektivgmhh/docker-shopware
+  IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/docker-shopware
 
 jobs:
 
