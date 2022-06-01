@@ -1,4 +1,4 @@
-FROM php:7.0.29-apache
+FROM php:7.0.28-apache
 RUN apt-get update \
   && apt-get install --no-install-recommends -y \
      libpng-dev \
