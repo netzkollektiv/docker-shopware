@@ -13,9 +13,16 @@ RUN apt-get update \
      wget \
      vim \
      unzip \
+     libxml2-dev \
+     default-mysql-client \
+     git \
+     jq \
+  && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
   && apt-get clean \
   && rm -r /var/lib/apt/lists/* \
-  && docker-php-ext-configure gd \
-  && docker-php-ext-install pdo pdo_mysql mbstring gd intl zip \
+  && docker-php-ext-configure gd --with-freetype --with-jpeg \
+  && docker-php-ext-install pdo pdo_mysql mbstring gd intl zip soap \
+  && echo 'memory_limit = 2048M' >> /usr/local/etc/php/conf.d/php-base.ini \
+  && echo 'max_upload_size=50M' >> /usr/local/etc/php/conf.d/php-base.ini \
+  && echo 'post_max_size=50M' >> /usr/local/etc/php/conf.d/php-base.ini \
   && a2enmod rewrite
-
